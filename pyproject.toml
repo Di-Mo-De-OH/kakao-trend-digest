@@ -3,7 +3,9 @@ name = "kakao-trend-digest"
 version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "pydantic>=2.14.2",
+]
 
 [dependency-groups]
 dev = [

@@ -4,3 +4,16 @@ version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.14"
 dependencies = []
+
+[dependency-groups]
+dev = [
+    "ruff>=0.17.3",
+]
+
+[tool.ruff.lint]
+select = [
+    "E", "F",   # 기본 오류 (문법, 안 쓰는 변수 등)
+    "I",        # import 정렬
+    "B",        # 버그가 나기 쉬운 패턴
+    "UP",       # 최신 파이썬 문법으로 쓰기
+]

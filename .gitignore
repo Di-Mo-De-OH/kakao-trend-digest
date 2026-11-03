@@ -1,0 +1,8 @@
+# 비밀 정보
+.env
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store

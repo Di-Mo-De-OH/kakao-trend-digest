@@ -17,9 +17,18 @@ fix: ## ruff 자동 수정 가능한 린트 오류 수정 + 포맷팅
 	uv run ruff check --fix .
 	uv run ruff format .
 
-check: ## CI용 검사 (린트 + 포맷 확인, 파일 수정 없음)
-	uv run ruff check .
-	uv run ruff format --check .
+check: ## 린트 + 포맷 검사, 틀린 부분은 자동 수정 후 재검사
+	@if uv run ruff check . && uv run ruff format --check .; then \
+		echo "✅ 문제 없음"; \
+	else \
+		echo "⚠️  문제 발견 → 자동 수정 중..."; \
+		uv run ruff check --fix .; \
+		uv run ruff format .; \
+		echo "🔁 재검사"; \
+		uv run ruff check . && uv run ruff format --check . \
+			&& echo "✅ 자동 수정 완료" \
+			|| { echo "❌ 자동 수정 불가한 오류가 남아있습니다. 위 내용을 직접 수정하세요."; exit 1; }; \
+	fi
 
 clean: ## 캐시 파일 삭제
 	rm -rf .ruff_cache .pytest_cache .mypy_cache

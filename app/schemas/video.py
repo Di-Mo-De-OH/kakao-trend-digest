@@ -1,7 +1,9 @@
 from datetime import datetime
 from typing import Literal
 
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
+
+from app.core.utils import normalize_tag
 
 
 class Author(BaseModel):
@@ -27,3 +29,8 @@ class Video(BaseModel):
     published_at: datetime
     thumbnail_url: str | None = None
     hashtags: list[str] = []
+
+    @field_validator("hashtags")
+    @classmethod
+    def normalize_hashtags(cls, v: list[str]) -> list[str]:
+        return [normalize_tag(t) for t in v]

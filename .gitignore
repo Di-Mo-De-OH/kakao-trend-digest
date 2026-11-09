@@ -6,3 +6,17 @@
 
 # macOS
 .DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+
+# 도구 캐시
+.venv/
+.ruff_cache/
+.pytest_cache/
+.mypy_cache/
+
+# Claude Code 개인 설정 (이 컴퓨터 전용)
+.claude/settings.local.json
+CLAUDE.local.md

@@ -1,22 +1,19 @@
 """YouTube 지난 7일 인기 영상 수집 가능성 검증 (일회성 스크립트).
 
-실행: uv run --env-file env/.env python scripts/youtube/check_youtube.py
+실행: uv run --env-file env/.env python -m scripts.youtube.main
 
 - env/.env에 YOUTUBE_API_KEY가 있어야 한다. 키는 어디에도 출력하지 않는다.
 - 호출은 3번이다 (검색 100 + 영상 1 + 채널 1 = 약 102 쿼터 유닛).
 - 표준 라이브러리만 쓴다. app/ 모듈은 건드리지 않는다.
 """
 
-
 import sys
-
 from datetime import UTC, datetime, timedelta
-from typing import Any
-from scripts.youtube.client import call
 
-
-
-
+from .client import call
+from .formatting import fmt_count, fmt_duration
+from .parse import duration_seconds
+from .utils import DAYS, MAX_RESULTS, REGION_CODE, SHORT_LIMIT_SEC
 
 
 def main() -> None:

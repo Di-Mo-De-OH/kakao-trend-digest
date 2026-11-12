@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "deny": [
+      "Bash(git add *)",
+      "Bash(git rm *)",
+      "Bash(git mv *)",
+      "Bash(git commit *)",
+      "Bash(git push *)",
+      "Bash(git * add *)",
+      "Bash(git * rm *)",
+      "Bash(git * mv *)",
+      "Bash(git * commit *)",
+      "Bash(git * push *)",
+      "Bash(gh pr create *)",
+      "Read(./.env)",
+      "Read(./.env.*)"
+    ],
+    "ask": [
+      "Bash(git reset *)",
+      "Bash(git clean *)",
+      "Bash(git restore *)",
+      "Bash(git branch -D *)",
+      "Bash(git stash drop *)"
+    ]
+  }
+}
